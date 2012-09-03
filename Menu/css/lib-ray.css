@@ -27,12 +27,14 @@ a:hover{
 	background: black;
 	width: 1920px;
 	height: 1080px;
+	outline:none;
 	/*border:1px solid blue;*/
 }
 
 #feature {
   	width: 1920px;
   	height: 1080px;
+	outline:none;
 	/*border:1px solid red;*/
 }
 
