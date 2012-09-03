@@ -1,0 +1,13 @@
+[Lib-Ray]
+# Mandatory fields
+LibRayVersion: 0.2
+LibRayID: 1001     # ID for the producer (sign up for this with lib-ray.org)
+DiskID: 1       # ID for this disk (you assign this number)
+Cover: cover.jpg
+Title: Nick Fox-Gieg Animation
+
+[Copyright]
+Date: 2012
+RightsOwner: Nick Fox-Gieg
+RightsURL: fox-gieg.com
+License: Creative Commons Attribution-NonCommercial-ShareAlike, Version 3.0, Unported

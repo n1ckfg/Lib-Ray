@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<title>Main Menu - Nick Fox-Gieg Animation</title>
+		<link rel="stylesheet" type="text/css" href="Menu/css/lib-ray.css"/>
+		<script src="Menu/js/jquery.min.js" type="text/javascript"></script>
+		<script src="Menu/js/lib-ray.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			ratioW = 16;
+			ratioH = 9;
+			nextLocation = "the_foxhole_manifesto.html";
+			prevLocation = "the_orange.html";
+			//--
+			$(menuSetup);
+			$(window).resize(menuResize);
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="menu">
+				<div id="innermenu">
+					<ol>
+						<li><a href="Menu/the_orange.html" class="menubutton">The Orange</a></li>
+						<li><a href="Menu/the_foxhole_manifesto.html" class="menubutton">The Foxhole Manifesto</a></li>
+						<li><a href="Menu/disarmed.html" class="menubutton">Disarmed</a></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

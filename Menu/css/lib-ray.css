@@ -1,0 +1,95 @@
+body{
+  background: black;
+  color: #eeeeee;
+  font-size:32px;
+  font-family:Verdana;
+  cursor:none;
+}
+
+a{
+	color: #eeeeee;
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:underline;
+	color:#ffffff;
+}
+
+#container{
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	text-align: center;
+	background: black;
+	width: 1920px;
+	height: 1080px;
+	/*border:1px solid blue;*/
+}
+
+#feature {
+  	width: 1920px;
+  	height: 1080px;
+	/*border:1px solid red;*/
+}
+
+#navigation {
+	z-index:1;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	text-align: center;
+	padding:2px;
+	width:8em;
+	height:1.5em;
+	opacity:0.5;
+	background: black;
+	border-radius:0.5em;
+	font-weight:bold;
+}
+
+#navigation:hover {
+	opacity:1;
+}
+
+#menu {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	text-align: center;
+	background: #aa0000;
+	width: 640px;
+	height: 360px;
+	border-radius:1em;
+	padding:2em;
+	border:2px solid #990000;
+}
+
+#innermenu {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin: auto;	
+	width:640px;
+	height:360px;
+	text-align:left;
+	border:2px solid #990000;
+	border-radius:1em;
+	padding:2em;
+	background:#ee0000;
+}
+
+.menubutton {
+	
+}
