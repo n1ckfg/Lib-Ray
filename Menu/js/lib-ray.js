@@ -1,4 +1,7 @@
-var margin = 0;
+var origW = 1920;
+var origH = 1080;
+var marginW = 0;
+var marginH = 0;
 var ratioW = 16;
 var ratioH = 9;
 var nextLocation = "";
@@ -9,7 +12,7 @@ var innerMenuScaleW = 0.8;
 var innerMenuScaleH = 0.4;
 var fontScale = 0.001;
 var hoverNav = false;
-var feature, navigation, sW
+var feature, navigation, wW, sW;
 
 var posX=0;
 var posY=0;
@@ -22,7 +25,7 @@ var hit = false;
 var debug = false;
 
 function featureSetup(){
-	featureResize();
+	$(featureResize);
 	hit=true;
 	counter=0;
 	feature = document.getElementById("feature");
@@ -51,31 +54,45 @@ function featureSetup(){
 }
 
 function featureResize(){
-	sW = $(window).width();
-	$("#container").css("width", sW-margin);
-	$("#container").css("height", ((sW/ratioW)*ratioH)-margin);
-	$("#feature").css("width",100+"%");
-	$("#feature").css("height",100+"%");
+	sW = screen.width;
+	wW = $(window).width();
+	if(sW == origW && wW == origW){
+		$("#container").css("width", origW + "px");
+		$("#container").css("height", origH + "px");
+		$("#feature").css("width", origW + "px");
+		$("#feature").css("height", origH + "px");
+	}else{
+		$("#container").css("width", wW-marginW);
+		$("#container").css("height", ((wW/ratioW)*ratioH)-marginH);
+		$("#feature").css("width", 100+"%");
+		$("#feature").css("height", 100+"%");
+	}
 	$("#navigation").css("top", ($("#container").height()-120)+"px");
-	$("body").css("font-size",(sW * fontScale)+"em");
+	$("body").css("font-size",(wW * fontScale)+"em");
 }
 
 function menuSetup(){
-	menuResize();
+	$(menuResize);
 	document.getElementById("menu").onmousedown = function(){ return false }; 
 	$("body").css("cursor","auto");
 	//$(".menubutton").click(requestFullScreen);
 }
 
 function menuResize(){
-	sW = $(window).width();
-	$("#container").css("width", sW-margin);
-	$("#container").css("height", ((sW/ratioW)*ratioH)-margin);
+	sW = screen.width;
+	wW = $(window).width();
+	if(sW == origW && wW == origW){
+		$("#container").css("width", origW + "px");
+		$("#container").css("height", origH + "px");		
+	}else{
+		$("#container").css("width", wW-marginW);
+		$("#container").css("height", ((wW/ratioW)*ratioH)-marginH);
+	}
 	$("#menu").css("width", $("#container").width() * menuScale);
 	$("#menu").css("height", $("#container").height() * menuScale);
 	$("#innermenu").css("width", $("#menu").width() * innerMenuScaleH);
 	$("#innermenu").css("height", $("#menu").height() * innerMenuScaleW);
-	$("body").css("font-size",(sW * fontScale)+"em");
+	$("body").css("font-size",(wW * fontScale)+"em");
 }
 
 function mouseCheck(){

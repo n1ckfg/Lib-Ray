@@ -28,6 +28,7 @@ a:hover{
 	width: 1920px;
 	height: 1080px;
 	outline:none;
+	overflow:hidden;
 	/*border:1px solid blue;*/
 }
 
@@ -57,7 +58,7 @@ a:hover{
 }
 
 #navigation:hover {
-	opacity:1;
+	opacity:0.9;
 }
 
 #menu {
