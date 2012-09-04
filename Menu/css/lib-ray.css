@@ -68,7 +68,7 @@ a:hover{
 	font-style: normal;
 }
 
-ol li{
+ol li {
  	text-shadow:2px 2px 2px #330000;
 }
 
@@ -91,12 +91,12 @@ ol li{
 	right: 0px;
 	margin: auto;
 	text-align: center;
-	background: #aa0000;
-	width: 640px;
-	height: 360px;
+	/*background: #aa0000;*/
+  	width: 1600px;
+  	height: 900px;
 	border-radius:0.5em;
 	padding:2em;
-	border:2px solid #990000;
+	border:2px solid #220044;
 	overflow:hidden;
 }
 
@@ -107,11 +107,26 @@ ol li{
 	left: 0px;
 	right: 0px;
 	margin: auto;	
-	width:640px;
-	height:360px;
+	width:1280px;
+	height:720px;
 	text-align:left;
 	border-radius:1em;
 	padding:2em;
+}
+
+.lightpane {
+background:#48485F;
+background-image: url('../images/tablebg-light.gif');
+}
+
+.darkpane {
+background: #3D3D56;
+background-image: url('../images/tablebg-dark.gif');
+}
+
+.mediumpane {
+background: #545471;
+background-image: url('../images/tablebg-med.gif');
 }
 
 .column{

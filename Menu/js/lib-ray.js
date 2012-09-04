@@ -1,11 +1,52 @@
+var trackList = [
+	"more_than_winning.html",
+	"the_orange.html",
+	"the_foxhole_manifesto.html",
+	"interregnum.html",
+	"the_option_of_war.html",
+	"i_wanna_be_famous.html",
+	"a_good_joke.html",
+	"traffic_flow_ii.html",
+	"falling_into_place.html",
+	"conan_vs_bear.html",
+	"neighbourhood_watch.html",
+	"the_dead_man_and_the_lawyer.html",
+	"peace_through_strength.html",
+	"the_story_of_enoch.html",
+	"mother_of_all_bombs.html",
+	"birds_eye_bulls_eye.html",
+	"disarmed.html",
+	"the_little_bird_of_disaster.html",
+	"we_are_now_starting_our_descent.html",
+	"trebuchet.html",
+	"seismograph.html",
+	"all_about_the_magnet.html",
+	"six_premonitions.html",
+	"coagulate.html",
+	"the_mouth_and_the_vitamin.html",
+	"sloth.html",
+	"aleph-bet.html",
+	"the_judge.html",
+	"techniques_for_managing_anger.html",
+	"elegy.html",
+	"one_new_message.html",
+	"fast_voyeur.html",
+	"manipulations.html",
+	"an_iconoclast.html",
+	"stoel_iii.html",
+	"high_places.html",
+	"meal.html",
+	"open_quote.html"
+];	
+
 var origW = 1920;
 var origH = 1080;
 var marginW = 0;
 var marginH = 0;
 var ratioW = 16;
 var ratioH = 9;
+var trackMinW = 700;
 var menuScale = 0.85;
-var menuMinW = 700;
 var innerMenuScaleW = 0.8;
 var innerMenuScaleH = 0.8;
 var fontScale = 0.001;
@@ -22,65 +63,22 @@ var spread = 20;
 var hit = false;
 var debug = false;
 
+var startTime = 0;
 var thisTrack="";
 var nextLocation = "";
 var prevLocation = "";
 var homeLocation = "../index.html";
+var trackType="feature";
 
-var trackList = [
-	"a_good_joke.html",
-	"one_new_message.html",
-	"aleph_bet.html",
-	"open_quote.html",
-	"all_about_the_magnet.html",
-	"peace_through_strength.html",
-	"an_iconoclast.html",
-	"seismograph.html",
-	"birds_eye_bulls_eye.html",
-	"six_premonitions.html",
-	"coagulate.html",
-	"sloth.html",
-	"conan_vs_bear.html",
-	"some_people_never_learn.html",
-	"stoel_iii.html",
-	"disarmed.html",
-	"techniques_for_managing_anger.html",
-	"elegy.html",
-	"the_foxhole_manifesto.html",
-	"falling_into_place.html",
-	"the_judge.html",
-	"fast_voyeur.html",
-	"the_little_bird_of_disaster.html",
-	"high_places.html",
-	"the_option_of_war.html",
-	"i_wanna_be_famous.html",
-	"the_orange.html",
-	"the_story_of_enoch.html",
-	"interregnum.html",
-	"track_wheel.html",
-	"traffic_flow_ii.html",
-	"manipulations.html",
-	"train_feet.html",
-	"meal.html",
-	"trebuchet.html",
-	"more_than_winning.html",
-	"we_are_now_starting_our_descent.html",
-	"mother_of_all_bombs.html"
-];
+$(setup);
 
-function getTrack(){
-	thisTrack = returnDocument();
-	for(var i=0;i<trackList.length;i++){
-		if(i==0 && trackList[i]==thisTrack){ //first track
-				nextLocation = trackList[i+1];
-				prevLocation = homeLocation;
-		}else if(i==trackList.length-1 && trackList[i]==thisTrack){ //last track
-				nextLocation = homeLocation;
-				prevLocation = trackList[i-1];			
-		}else if(i!=0 && i!= trackList.length-1 && trackList[i]==thisTrack){
-				nextLocation = trackList[i+1];
-				prevLocation = trackList[i-1];				
-		}
+function setup(){
+	if(trackType=="feature"){
+		$(featureSetup);
+		$(window).resize(featureResize);
+	}else if (trackType=="menu"){
+		menuSetup();
+		$(window).resize(menuResize);
 	}
 }
 
@@ -91,10 +89,12 @@ function featureSetup(){
 	counter=0;
 	feature = document.getElementById("feature");
 	feature.controls=0;
+	feature.addEventListener("loadedmetadata", function() {
+  		this.currentTime = startTime;
+	}, false);
 	nav = document.getElementById("navigation");
 	nav.onmousedown = function(){ return false }; 
 	$("#navigation").hide();
-	//--
 	//--------------
 	$("#feature").bind("ended", function(){ location.href=nextLocation; });
 	$("#prevButton").click(function(){ location.href=prevLocation; });
@@ -115,8 +115,7 @@ function featureSetup(){
 }
 
 function featureResize(){
-	sW = screen.width;
-	wW = $(window).width();
+	getScreenDim();
 	if(sW == origW && wW == origW){
 		$("#container").css("width", origW + "px");
 		$("#container").css("height", origH + "px");
@@ -140,9 +139,7 @@ function menuSetup(){
 }
 
 function menuResize(){
-	sW = screen.width;
-	wW = $(window).width();
-	if(wW<menuMinW) wW = menuMinW;
+	getScreenDim();
 	if(sW == origW && wW == origW){
 		$("#container").css("width", origW + "px");
 		$("#container").css("height", origH + "px");		
@@ -155,6 +152,22 @@ function menuResize(){
 	$("#innermenu").css("width", $("#menu").width() * innerMenuScaleW);
 	$("#innermenu").css("height", $("#menu").height() * innerMenuScaleH);
 	$("body").css("font-size",(wW * fontScale)+"em");
+}
+
+function getTrack(){
+	thisTrack = returnDocument();
+	for(var i=0;i<trackList.length;i++){
+		if(i==0 && trackList[i]==thisTrack){ //first track
+				nextLocation = trackList[i+1];
+				prevLocation = homeLocation;
+		}else if(i==trackList.length-1 && trackList[i]==thisTrack){ //last track
+				nextLocation = homeLocation;
+				prevLocation = trackList[i-1];			
+		}else if(i!=0 && i!= trackList.length-1 && trackList[i]==thisTrack){
+				nextLocation = trackList[i+1];
+				prevLocation = trackList[i-1];				
+		}
+	}
 }
 
 function mouseCheck(){
@@ -172,18 +185,24 @@ function mouseCheck(){
 		}
 		
 		if(hit && !hoverNav){
-				$("#navigation").hide();
-				feature.controls=0;
-				$("body").css("cursor","none");
-				if(debug){ $("body").css("background","green"); }
+			$("#navigation").hide();
+			feature.controls=0;
+			$("body").css("cursor","none");
+			if(debug) $("body").css("background","green");
 		}else if(!hit){
 			$("#navigation").show();
 			feature.controls=1;
 			$("body").css("cursor","auto");
-			if(debug){ $("body").css("background","red"); }
+			if(debug) $("body").css("background","red");
 		}
 		mouseCheck();
 	},1);
+}
+
+function getScreenDim(){
+	sW = screen.width;
+	wW = $(window).width();
+	if(wW<trackMinW) wW = trackMinW;
 }
 
 function disableSelect(){
@@ -221,4 +240,3 @@ else if (docElm.webkitRequestFullScreen) {
     docElm.webkitRequestFullScreen();
 }
 }
-
