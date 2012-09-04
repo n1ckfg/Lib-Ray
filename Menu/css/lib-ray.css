@@ -14,6 +14,7 @@ a{
 a:hover{
 	text-decoration:underline;
 	color:#ffffff;
+	font-style:italic;
 }
 
 #container{
@@ -55,10 +56,31 @@ a:hover{
 	background: black;
 	border-radius:0.5em;
 	font-weight:bold;
+  	text-shadow:2px 2px 4px #d0d0e0;
 }
 
 #navigation:hover {
 	opacity:0.9;
+  	cursor:default;
+}
+
+#navigation a{
+	font-style: normal;
+}
+
+ol li{
+ 	text-shadow:2px 2px 2px #330000;
+}
+
+#title {
+	text-align:center;
+	font-size:3.25em;
+	margin-top:-0.25em;
+	opacity:0.2;
+	font-weight: bolder;
+	font-style: italic;
+	overflow:hidden;
+  	text-shadow:4px 4px 4	px #d0d0e0;
 }
 
 #menu {
@@ -72,14 +94,15 @@ a:hover{
 	background: #aa0000;
 	width: 640px;
 	height: 360px;
-	border-radius:1em;
+	border-radius:0.5em;
 	padding:2em;
 	border:2px solid #990000;
+	overflow:hidden;
 }
 
 #innermenu {
 	position: absolute;
-	top: 0px;
+	top: 3em;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
@@ -87,10 +110,20 @@ a:hover{
 	width:640px;
 	height:360px;
 	text-align:left;
-	border:2px solid #990000;
 	border-radius:1em;
 	padding:2em;
-	background:#ee0000;
+}
+
+.column{
+	margin-top:0em;
+}
+
+#column1{
+	float:left;
+}
+
+#column2{
+	float:right;
 }
 
 .menubutton {
